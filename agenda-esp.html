@@ -11,7 +11,62 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+    <style type="text/css">
+        .modalDialog {
+            position: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 99999;
+            opacity:0;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            pointer-events: none;
+            overflow: auto;
+        }
+        .modalDialog:target {
+            opacity:1;
+            pointer-events: auto;
+        }
+        .modalDialog > div {
+            overflow: visible;
+            width: 80%;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #999);
+            background: -webkit-linear-gradient(#fff, #999);
+            background: -o-linear-gradient(#fff, #999);
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+        }
+        .close {
+            background: #606061;
+            color: #FFFFFF;
+            line-height: 25px;
+            position: absolute;
+            right: -12px;
+            text-align: center;
+            top: -10px;
+            width: 24px;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
+        }
+        .close:hover { background: #00d9ff; }
+    </style>
 </head>
 <body>
     <div class = "container">
@@ -38,22 +93,130 @@
                 <h1>Agenda</h1>
             </div>
         </div>
-        <div class ="row mt-5" id = "tarjetaViernes">
-            <div class = "col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <h3>Viernes</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et orci quis eros sodales semper eget et sapien. Maecenas vitae pellentesque arcu, vitae rutrum dui. Curabitur ut mi arcu. Duis eu turpis accumsan, semper justo at, tempus felis. Aenean imperdiet at nisl quis vestibulum. Vivamus quis molestie felis, quis tincidunt quam. Praesent in vestibulum quam. In sollicitudin eros nibh, ac cursus diam feugiat a. Donec nec quam gravida, tristique tortor ornare, vestibulum massa. Nam luctus dui quis ipsum rhoncus sollicitudin. Mauris vitae sem laoreet diam tincidunt vestibulum. Cras at feugiat metus. Sed varius augue at justo facilisis, at vulputate lorem pharetra. Integer ornare cursus sagittis. Maecenas eget efficitur eros. Integer vel convallis tortor, euismod pellentesque orci.</p>
+        <div class = "container">
+            <div class="card border-light mb-3">
+                <div class="card-header">Viernes</div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">21:00 | Cena ligera en la piscina | <a href="#piscinamapa">📌 Plano</a> | <a href="#1carta">🍽 Carta</a></li>
+                        <li class="list-group-item">22:00 | Serenata | <a href="#piscinamapa">📌 Plano</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class ="row mt-5" id = "tarjetaSabado">
-            <div class = "col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <h3>Sábado</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et orci quis eros sodales semper eget et sapien. Maecenas vitae pellentesque arcu, vitae rutrum dui. Curabitur ut mi arcu. Duis eu turpis accumsan, semper justo at, tempus felis. Aenean imperdiet at nisl quis vestibulum. Vivamus quis molestie felis, quis tincidunt quam. Praesent in vestibulum quam. In sollicitudin eros nibh, ac cursus diam feugiat a. Donec nec quam gravida, tristique tortor ornare, vestibulum massa. Nam luctus dui quis ipsum rhoncus sollicitudin. Mauris vitae sem laoreet diam tincidunt vestibulum. Cras at feugiat metus. Sed varius augue at justo facilisis, at vulputate lorem pharetra. Integer ornare cursus sagittis. Maecenas eget efficitur eros. Integer vel convallis tortor, euismod pellentesque orci.</p>
+            <div class="card border-light mb-3">
+                <div class="card-header">Sabado</div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">10:00 | Desayuno en la piscina | <a href="#piscinamapa">📌 Plano</a> | <a href="#0carta">🍽 Carta</a></li>
+                        <li class="list-group-item">11:00 | Piscina / Visita turistica | <a href="#piscinamapa">📌 Plano</a></li>
+                        <li class="list-group-item">13:00 | Comida | <a href="#comidamapa">📌 Plano</a> | <a href="#2carta">🍽 Carta</a></li>
+                        <li class="list-group-item">17:30 | Ceremonia | <a href="#ceremoniamapa">📌 Plano</a></li>
+                        <li class="list-group-item">19:30 | Coctel | <a href="#coctelmapa">📌 Plano</a></li>
+                        <li class="list-group-item">21:00 | Cena | <a href="#comidamapa">📌 Plano</a> | <a href="#1carta">🍽 Carta</a></li>
+                        <li class="list-group-item">24:00 | Baile con barra libre | <a href="#coctelmapa">📌 Plano</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class ="row mt-5" id = "tarjetaDomingo">
-            <div class = "col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <h3>Domingo</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et orci quis eros sodales semper eget et sapien. Maecenas vitae pellentesque arcu, vitae rutrum dui. Curabitur ut mi arcu. Duis eu turpis accumsan, semper justo at, tempus felis. Aenean imperdiet at nisl quis vestibulum. Vivamus quis molestie felis, quis tincidunt quam. Praesent in vestibulum quam. In sollicitudin eros nibh, ac cursus diam feugiat a. Donec nec quam gravida, tristique tortor ornare, vestibulum massa. Nam luctus dui quis ipsum rhoncus sollicitudin. Mauris vitae sem laoreet diam tincidunt vestibulum. Cras at feugiat metus. Sed varius augue at justo facilisis, at vulputate lorem pharetra. Integer ornare cursus sagittis. Maecenas eget efficitur eros. Integer vel convallis tortor, euismod pellentesque orci.S</p>
+            <div class="card border-light mb-3">
+                <div class="card-header">Domingo</div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">10:00 | Desayuno en la piscina | <a href="#piscinamapa">📌 Plano</a> | <a href="#0carta">🍽 Carta</a></li>
+                        <li class="list-group-item">11:00 | Piscina / Visita turistica | <a href="#piscinamapa">📌 Plano</a> | <a href="#turismo">📌 Plano turistico</a></li>
+                        <li class="list-group-item">13:00 | Despedida / Bus de vuelta a Madrid | <a href="#comidamapa">📌 Plano</a> |</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="0carta" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <div class="card-header">Carta</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">· Zumo natural de naranja</li>
+                            <li class="list-group-item">· Macedonia de frutas</li>
+                            <li class="list-group-item">· Bollo</li>
+                            <li class="list-group-item">· Churros</li>
+                            <li class="list-group-item">· Tortitas</li>
+                            <li class="list-group-item">· Croissant a la plancha</li>
+                            <li class="list-group-item">· Café</li>
+                            <li class="list-group-item">· Té</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="1carta" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <div class="card-header">Carta</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">· Brócoli con jamón, tomates secos y aceitunas</li>
+                            <li class="list-group-item">· Espárragos enrollados</li>
+                            <li class="list-group-item">· Cazuela de verduras con huevo</li>
+                            <li class="list-group-item">· Brochetas de pavo y verduras a la parrilla</li>
+                            <li class="list-group-item">· Pollo a la plancha con verduras al vapor</li>
+                            <li class="list-group-item">· Mousse de yogur sin azúcar</li>
+                            <li class="list-group-item">· Macedonia de frutas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="2carta" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <div class="card-header">Carta</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">· Ensaladilla rusa con ventresca de atún y caviar de trucha</li>
+                            <li class="list-group-item">· Croquetas de jamón, boletus y espinacas con queso azul</li>
+                            <li class="list-group-item">· Chipirones troceados al estilo Pelaio</li>
+                            <li class="list-group-item">· Saquitos de bogavante y marisco con salsa de gambas</li>
+                            <li class="list-group-item">· Carpacho de gambones</li>
+                            <li class="list-group-item">· Tartar de atún con aguacate</li>
+                            <li class="list-group-item">· Rape con muselina de ajos y chocolate</li>
+                            <li class="list-group-item">· Chuletón de vaca con hueso con maduración de 40 días</li>
+                            <li class="list-group-item">· Solomillo de vaca con maduración de 30 días</li>
+                            <li class="list-group-item">· Tarta de queso artesana</li>
+                            <li class="list-group-item">· Torrija caramelizada con helado de leche merengada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="comidamapa" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h2>Plano</h2>
+                    <img src = "images/comida.png" alt="plano" style="width: 100%; margin: auto;"/>
+                </div>
+            </div>
+            <div id="coctelmapa" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h2>Plano</h2>
+                    <img src = "images/coctel.png" alt="plano" style="width: 100%; margin: auto;"/>
+                </div>
+            </div>
+            <div id="ceremoniamapa" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h2>Plano</h2>
+                    <img src = "images/matrimonio.png" alt="plano" style="width: 100%; margin: auto;"/>
+                </div>
+            </div>
+            <div id="piscinamapa" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h2>Plano</h2>
+                    <img src = "images/piscina.png" alt="plano" style="width: 100%; margin: auto;"/>
+                </div>
+            </div>
+            <div id="turismo" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h2>Plano</h2>
+                    <img src = "images/turismo.jpg" alt="plano" style="width: 100%; margin: auto;"/>
+                </div>
             </div>
         </div>
     </div>
